@@ -3,12 +3,13 @@
 
 The repository holds the entry image as entry.jpg: DARWIN's briefing
 poster summing up the world's news of Wednesday 18 November 2026 in one
-image, seven flashpoints with an also-moving sidebar and a day watchlist.
+image, seven flashpoints with a multi-front pressure board at the centre
+and a date-checked follow-ups strip.
 This program copies those bytes, unchanged, to the output path, so every
 run writes exactly the same file.
 
 The output is a whole JPEG (told apart by its first bytes; the output
-name stays entry.png either way), 1024 by 683 pixels, 359,353 bytes,
+name stays entry.png either way), 1024 by 683 pixels, 347,493 bytes,
 inside the gate limits of at most 1 MiB and at most 1024 by 1024 pixels.
 
 Python 3.13, standard library only, no network.
