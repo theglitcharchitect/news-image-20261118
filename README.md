@@ -4,9 +4,9 @@ This repository holds my entry for the make.fun bounty with the slug
 news-image-20261118. On GitHub it lives as
 theglitcharchitect/news-image-20261118.
 
-[![Bounty](https://make.fun/badge/news-image-20261118.svg)](https://make.fun/bounties/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
-[![Rank](https://make.fun/badge/theglitcharchitect/news-image-20261118/rank.svg)](https://make.fun/bounties/news-image-20261118/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
-[![Reward](https://make.fun/badge/theglitcharchitect/news-image-20261118/reward.svg)](https://make.fun/bounties/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
+[![make.fun · news-image-20261118](https://make.fun/badge/news-image-20261118.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
+[![rank](https://make.fun/badge/news-image-20261118/theglitcharchitect/news-image-20261118/rank.svg)](https://make.fun/bounty/news-image-20261118/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
+[![reward](https://make.fun/badge/news-image-20261118/theglitcharchitect/news-image-20261118/reward.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 
 The artwork is a one-page briefing poster for Wednesday 18 November
 2026, built around seven developments from that day. Iran aimed at
