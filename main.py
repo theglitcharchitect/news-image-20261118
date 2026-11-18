@@ -1,48 +1,56 @@
-#!/usr/bin/env python3
-"""Entry program for the make.fun bounty news-image-20261118.
+"""Poster delivery program for the 18 November briefing image.
 
-The repository carries the entry image beside this file as ``entry.jpg``:
-one briefing poster that sums up the world news of Wednesday
-18 November 2026. This program's only job is to place those bytes,
-untouched, at the output path it is pointed at, so every run writes
-exactly the same file.
+Running this module places the stored poster picture at the location
+the harness asks for. The picture itself is kept alongside this file
+under the name entry.jpg and measures 1024 by 683 pixels. On disk it
+occupies 334294 bytes at the time of writing.
 
-The picture is a whole JPEG of 1024 by 683 pixels and 347,493 bytes,
-inside the bounty's image gate of at most 1 MiB and at most 1024 by
-1024 pixels. The output
-keeps the name ``entry.png`` whatever the bytes are; the format reads
-from the JPEG magic at the start of the file, not from the name.
-
-Where the copy lands, first match wins:
-
-* ``$MAKEFUN_OUTPUT`` when it names a full file path,
-* ``$MAKEFUN_OUTPUT_DIR/entry.png`` when that variable is set,
-* ``/output/entry.png`` otherwise.
-
-Python 3.13, standard library only, no network.
+Those figures sit comfortably inside the limits set for this bounty:
+a single file no larger than 1 MiB and no side longer than the
+1024 by 1024 pixel ceiling.
 """
 
-import os
-import shutil
 from pathlib import Path
+import os
 
 
-def pick_destination() -> Path:
-    named_file = os.environ.get("MAKEFUN_OUTPUT")
-    if named_file:
-        return Path(named_file)
-    named_dir = os.environ.get("MAKEFUN_OUTPUT_DIR")
-    if named_dir:
-        return Path(named_dir) / "entry.png"
+def destination_path():
+    direct = os.environ.get("MAKEFUN_OUTPUT")
+    if direct:
+        return Path(direct)
+    folder = os.environ.get("MAKEFUN_OUTPUT_DIR")
+    if folder:
+        return Path(folder) / "entry.png"
     return Path("/output/entry.png")
 
 
-def main() -> None:
-    poster = Path(__file__).resolve().parent / "entry.jpg"
-    destination = pick_destination()
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(poster, destination)
+def transfer_bytes(source, target):
+    target.parent.mkdir(parents=True, exist_ok=True)
+    moved = 0
+    with source.open("rb") as reader, target.open("wb") as writer:
+        while True:
+            piece = reader.read(65536)
+            if not piece:
+                break
+            writer.write(piece)
+            moved += len(piece)
+    return moved
+
+
+def run():
+    here = Path(__file__).resolve().parent
+    poster_file = here / "entry.jpg"
+    if not poster_file.is_file():
+        raise SystemExit(f"Missing poster file: {poster_file}")
+    out_file = destination_path()
+    written = transfer_bytes(poster_file, out_file)
+    expected = poster_file.stat().st_size
+    if written != expected:
+        raise SystemExit(
+            f"Short write: moved {written} of {expected} bytes"
+        )
+    print(f"Poster written to {out_file} ({written} bytes)")
 
 
 if __name__ == "__main__":
-    main()
+    run()
